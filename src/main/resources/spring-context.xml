@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <bean id="entityManagerFactory" class="javax.persistence.Persistence" factory-method="createEntityManagerFactory">
+        <constructor-arg name="persistenceUnitName" value="sxd"/>
+        <constructor-arg name="properties">
+            <map>
+                <entry key="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/shop"/>
+                <entry key="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+                <entry key="hibernate.connection.username" value="shop"/>
+                <entry key="hibernate.connection.password" value="shop"/>
+                <entry key="hibernate.connection.pool_size" value="1"/>
+                <entry key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+                <entry key="hibernate.show_sql" value="true"/>
+                <entry key="hibernate.format_sql" value="true"/>
+                <entry key="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
+                <entry key="hibernate.statement_cache.size" value="0"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="entityManager" class="javax.persistence.EntityManager" factory-method="createEntityManager"
+          factory-bean="entityManagerFactory">
+    </bean>
+
+</beans>

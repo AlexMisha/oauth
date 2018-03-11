@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd"
+        logicalFilePath="develop/product">
+    <changeSet id="product.xml" author="Michael Alekseev" context="develop">
+        <tagDatabase tag="product.xml"/>
+    </changeSet>
+    <changeSet id="ct.product" author="Michael Alekseev" context="develop">
+        <createTable tableName="product">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="name" type="varchar()">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="count" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="product"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="cs.product" author="Michael Alekseev" context="develop">
+        <createSequence sequenceName="sq_product" incrementBy="1" startValue="1"/>
+        <rollback>
+            <dropSequence sequenceName="sq_product"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
